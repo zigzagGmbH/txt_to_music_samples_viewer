@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Grid Layout</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .audio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        h2 {
+            width: 100%;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: #444;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .audio-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .audio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        audio {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .prompt-title {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .prompt-text {
+            color: #333;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <h1>MUSICGEN Audio Samples</h1>
+    
+    <h2>musicgen-stereo-small - 5 sec (using HF Transformes)</h2>
+    <div class="audio-grid">
+        <!-- Sample 1 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/small_stereo_5sec_r1.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Ambient electronic soundscape with gentle synth pads</div>
+        </div>
+
+        <!-- Sample 2 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/small_stereo_5sec_r2.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Upbeat chiptune melody inspired by 8-bit video games</div>
+        </div>
+
+        <!-- Sample 3 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/small_stereo_5sec_r3.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Minimalist piano piece reflecting on binary code and algorithms.</div>
+        </div>
+    </div>
+
+    <h2>musicgen-stereo-small - 8 sec (using HF Transformes)</h2>
+    <div class="audio-grid">
+        <!-- Sample 1 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/small_stereo_8sec_r1.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Ambient electronic soundscape with gentle synth pads</div>
+        </div>
+
+        <!-- Sample 2 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/small_stereo_8sec_r2.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Upbeat chiptune melody inspired by 8-bit video games</div>
+        </div>
+
+        <!-- Sample 3 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/small_stereo_8sec_r3.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Minimalist piano piece reflecting on binary code and algorithms.</div>
+        </div>
+    </div>
+
+    <h2>musicgen-stereo-medium - 5 sec (using HF Transformers - slow generation)</h2>
+    <div class="audio-grid">
+        <!-- Sample 1 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/medium_stereo_5sec_r1.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Ambient electronic soundscape with gentle synth pads</div>
+        </div>
+
+        <!-- Sample 2 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/medium_stereo_5sec_r2.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Tribal drums layered with glitchy synth textures, representing data streams.</div>
+        </div>
+
+        <!-- Sample 3 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/medium_stereo_5sec_r3.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Minimalist piano piece reflecting on binary code and algorithms.</div>
+        </div>
+    </div>
+
+    <h2>musicgen-stereo-medium - 8 sec (using HF Transformers - slow generation)</h2>
+    <div class="audio-grid">
+        <!-- Sample 1 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/medium_stereo_8sec_r1.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Ambient electronic soundscape with gentle synth pads</div>
+        </div>
+
+        <!-- Sample 2 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/medium_stereo_8sec_r2.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Tribal drums layered with glitchy synth textures, representing data streams.</div>
+        </div>
+
+        <!-- Sample 3 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/medium_stereo_8sec_r3.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Minimalist piano piece reflecting on binary code and algorithms.</div>
+        </div>
+    </div>
+
+    <h2>musicgen-stereo-medium (using mlx - faster generation)</h2>
+    <div class="audio-grid">
+        <!-- Sample 1 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/musicgen-stereo-medium-mlx-5-extra-sec-output.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Ambient electronic soundscape with gentle synth pads</div>
+        </div>
+
+        <!-- Sample 2 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/musicgen-stereo-medium-mlx-10-extra-sec-output.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Ambient electronic soundscape with gentle synth pads</div>
+        </div>
+
+        <!-- Sample 3 -->
+        <div class="audio-item">
+            <audio controls loop>
+                <source src="assets/musicgen-stereo-medium-mlx-20-extra-sec-output.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Synthwave sunset over a cyberpunk cityscape, melancholic but hopeful</div>
+        </div>
+    </div>
+</body>
+</html>

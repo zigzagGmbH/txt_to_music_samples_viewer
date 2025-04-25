@@ -317,6 +317,25 @@
                             updateWaveform(canvas, audioData[audioSrc], audioElement);
                         }
                     });
+
+                    // Add click navigation on the waveform
+                    canvas.addEventListener('click', function (event) {
+                        // Calculate click position as percentage of canvas width
+                        const rect = canvas.getBoundingClientRect();
+                        const clickX = event.clientX - rect.left;
+                        const clickPercent = clickX / canvas.width;
+
+                        // Set audio playhead to that position
+                        audioElement.currentTime = clickPercent * audioElement.duration;
+
+                        // If audio is paused, start playing
+                        if (audioElement.paused) {
+                            audioElement.play();
+                        }
+                    });
+
+                    // Add cursor style to indicate clickable area
+                    canvas.style.cursor = 'pointer';
                 }
 
                 // Load and decode the audio file

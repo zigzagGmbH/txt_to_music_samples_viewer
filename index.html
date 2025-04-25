@@ -92,6 +92,7 @@
 
         <!-- Sample 2 -->
         <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/small_stereo_5sec_r2.wav"></canvas>
             <audio controls loop>
                 <source src="assets/small_stereo_5sec_r2.wav" type="audio/wav">
                 Your browser does not support the audio element.
@@ -102,6 +103,7 @@
 
         <!-- Sample 3 -->
         <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/small_stereo_5sec_r3.wav"></canvas>
             <audio controls loop>
                 <source src="assets/small_stereo_5sec_r3.wav" type="audio/wav">
                 Your browser does not support the audio element.
@@ -115,6 +117,7 @@
     <div class="audio-grid">
         <!-- Sample 1 -->
         <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/small_stereo_8sec_r1.wav"></canvas>
             <audio controls loop>
                 <source src="assets/small_stereo_8sec_r1.wav" type="audio/wav">
                 Your browser does not support the audio element.
@@ -125,6 +128,7 @@
 
         <!-- Sample 2 -->
         <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/small_stereo_8sec_r2.wav"></canvas>
             <audio controls loop>
                 <source src="assets/small_stereo_8sec_r2.wav" type="audio/wav">
                 Your browser does not support the audio element.
@@ -135,6 +139,7 @@
 
         <!-- Sample 3 -->
         <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/small_stereo_8sec_r3.wav"></canvas>
             <audio controls loop>
                 <source src="assets/small_stereo_8sec_r3.wav" type="audio/wav">
                 Your browser does not support the audio element.
@@ -148,6 +153,7 @@
     <div class="audio-grid">
         <!-- Sample 1 -->
         <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/medium_stereo_5sec_r1.wav"></canvas>
             <audio controls loop>
                 <source src="assets/medium_stereo_5sec_r1.wav" type="audio/wav">
                 Your browser does not support the audio element.
@@ -158,6 +164,7 @@
 
         <!-- Sample 2 -->
         <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/medium_stereo_5sec_r2.wav"></canvas>
             <audio controls loop>
                 <source src="assets/medium_stereo_5sec_r2.wav" type="audio/wav">
                 Your browser does not support the audio element.
@@ -168,6 +175,7 @@
 
         <!-- Sample 3 -->
         <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/medium_stereo_5sec_r3.wav"></canvas>
             <audio controls loop>
                 <source src="assets/medium_stereo_5sec_r3.wav" type="audio/wav">
                 Your browser does not support the audio element.
@@ -181,6 +189,7 @@
     <div class="audio-grid">
         <!-- Sample 1 -->
         <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/medium_stereo_8sec_r1.wav"></canvas>
             <audio controls loop>
                 <source src="assets/medium_stereo_8sec_r1.wav" type="audio/wav">
                 Your browser does not support the audio element.
@@ -191,6 +200,7 @@
 
         <!-- Sample 2 -->
         <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/medium_stereo_8sec_r2.wav"></canvas>
             <audio controls loop>
                 <source src="assets/medium_stereo_8sec_r2.wav" type="audio/wav">
                 Your browser does not support the audio element.
@@ -201,6 +211,7 @@
 
         <!-- Sample 3 -->
         <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/medium_stereo_8sec_r3.wav"></canvas>
             <audio controls loop>
                 <source src="assets/medium_stereo_8sec_r3.wav" type="audio/wav">
                 Your browser does not support the audio element.
@@ -284,12 +295,31 @@
         // Essential JavaScript to draw waveforms
         document.addEventListener('DOMContentLoaded', function () {
             const canvases = document.querySelectorAll('.waveform');
+            const audioElements = document.querySelectorAll('audio');
 
+            // Store audio buffer data globally for redrawing during playback
+            const audioData = {};
+
+            // Set up all waveforms
             canvases.forEach(canvas => {
                 const audioSrc = canvas.getAttribute('data-audio');
                 if (!audioSrc) return;
 
-                // Fetch and decode the audio file
+                // Find the corresponding audio element
+                const audioElement = Array.from(audioElements).find(audio =>
+                    audio.querySelector('source').src.includes(audioSrc.split('/').pop())
+                );
+
+                if (audioElement) {
+                    // Connect the audio element to the canvas for playback updates
+                    audioElement.addEventListener('timeupdate', function () {
+                        if (audioData[audioSrc]) {
+                            updateWaveform(canvas, audioData[audioSrc], audioElement);
+                        }
+                    });
+                }
+
+                // Load and decode the audio file
                 fetch(audioSrc)
                     .then(response => response.arrayBuffer())
                     .then(arrayBuffer => {
@@ -297,14 +327,16 @@
                         return audioContext.decodeAudioData(arrayBuffer);
                     })
                     .then(audioBuffer => {
-                        // Draw the waveform
+                        // Store the audio data for this source
+                        audioData[audioSrc] = audioBuffer;
+                        // Draw initial waveform
                         drawWaveform(canvas, audioBuffer);
                     })
                     .catch(e => console.error('Error loading audio for waveform:', e));
             });
         });
 
-        // Function to draw the waveform
+        // Function to draw the initial waveform
         function drawWaveform(canvas, audioBuffer) {
             const ctx = canvas.getContext('2d');
             canvas.width = canvas.clientWidth;
@@ -313,11 +345,14 @@
             const width = canvas.width;
             const height = canvas.height;
 
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+
             // Get audio data
             const data = audioBuffer.getChannelData(0);
             const step = Math.ceil(data.length / width);
 
-            ctx.fillStyle = ' #4444';
+            ctx.fillStyle = '#4444'; // Background color for non-played portion
 
             for (let i = 0; i < width; i++) {
                 const dataIndex = Math.floor(i * step);
@@ -330,6 +365,56 @@
                 }
 
                 // Draw bar
+                const barHeight = max * height;
+                const y = (height - barHeight) / 2;
+                ctx.fillRect(i, y, 1, barHeight);
+            }
+        }
+
+        // Function to update waveform during playback
+        function updateWaveform(canvas, audioBuffer, audioElement) {
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Calculate playback progress
+            const progress = audioElement.currentTime / audioElement.duration;
+            const progressWidth = Math.floor(width * progress);
+
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+
+            // Get audio data
+            const data = audioBuffer.getChannelData(0);
+            const step = Math.ceil(data.length / width);
+
+            // Draw non-played portion
+            ctx.fillStyle = '#4444';
+            for (let i = progressWidth; i < width; i++) {
+                const dataIndex = Math.floor(i * step);
+                let max = 0;
+
+                for (let j = 0; j < step && (dataIndex + j) < data.length; j++) {
+                    const value = Math.abs(data[dataIndex + j]);
+                    if (value > max) max = value;
+                }
+
+                const barHeight = max * height;
+                const y = (height - barHeight) / 2;
+                ctx.fillRect(i, y, 1, barHeight);
+            }
+
+            // Draw played portion
+            ctx.fillStyle = '#444';
+            for (let i = 0; i < progressWidth; i++) {
+                const dataIndex = Math.floor(i * step);
+                let max = 0;
+
+                for (let j = 0; j < step && (dataIndex + j) < data.length; j++) {
+                    const value = Math.abs(data[dataIndex + j]);
+                    if (value > max) max = value;
+                }
+
                 const barHeight = max * height;
                 const y = (height - barHeight) / 2;
                 ctx.fillRect(i, y, 1, barHeight);

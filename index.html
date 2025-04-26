@@ -77,7 +77,7 @@
 <body>
     <h1>Generated Audio Samples</h1>
 
-    <h2>musicgen-stereo-small - 5 sec (using HF Transformes)</h2>
+    <h2>[MUSIC] musicgen-stereo-small - 5 sec (using HF Transformes)</h2>
     <div class="audio-grid">
         <!-- Sample 1 -->
         <div class="audio-item">
@@ -113,7 +113,7 @@
         </div>
     </div>
 
-    <h2>musicgen-stereo-small - 8 sec (using HF Transformes)</h2>
+    <h2>[MUSIC] musicgen-stereo-small - 8 sec (using HF Transformes)</h2>
     <div class="audio-grid">
         <!-- Sample 1 -->
         <div class="audio-item">
@@ -149,7 +149,7 @@
         </div>
     </div>
 
-    <h2>musicgen-stereo-medium - 5 sec (using HF Transformers - slow generation)</h2>
+    <h2>[MUSIC]musicgen-stereo-medium - 5 sec (using HF Transformers - slow generation)</h2>
     <div class="audio-grid">
         <!-- Sample 1 -->
         <div class="audio-item">
@@ -185,7 +185,7 @@
         </div>
     </div>
 
-    <h2>musicgen-stereo-medium - 8 sec (using HF Transformers - slow generation)</h2>
+    <h2>[MUSIC] musicgen-stereo-medium - 8 sec (using HF Transformers - slow generation)</h2>
     <div class="audio-grid">
         <!-- Sample 1 -->
         <div class="audio-item">
@@ -221,7 +221,7 @@
         </div>
     </div>
 
-    <h2>stable-audiogen-stereo-medium</h2>
+    <h2>[MUSIC] stable-audiogen-stereo-medium</h2>
     <h3>Results form pure implementation</h3>
     <div class="audio-grid">
         <!-- Sample 1 -->
@@ -290,7 +290,7 @@
             <div class="prompt-text">Upbeat chiptune melody inspired by 8-bit video games</div>
         </div>
     </div>
-    <h2>audioldm2-large</h2>
+    <h2>[SfX Audio] audioldm2-large</h2>
     <h3>Results form diffuser implementation for SfX</h3>
     <div class="audio-grid">
         <div class="audio-item">
@@ -366,7 +366,85 @@
             <div class="prompt-text">Without Faders at the extremes</div>
         </div>
     </div>
-    <h2>audioldm2</h2>
+    <!-- with faders -->
+    <h2>[SfX Audio] audioldm2-large</h2>
+    <h3>Results form diffuser implementation for SfX</h3>
+    <h4>**with custom fader (post AI generation - simple linear audio transformation)</h4>
+    <div class="audio-grid">
+        <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/output1_10sec_fd.wav"></canvas>
+            <audio controls loop>
+                <source src="assets/output1_10sec_fd.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">A helicopter in the distance flying over a rain forest</div>
+            <br>
+            <div class="prompt-title">Note:</div>
+            <div class="prompt-text">**With linear-fader** 0f 1.5sec at the extremes</div>
+        </div>
+        <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/output2_10sec_fd.wav"></canvas>
+            <audio controls loop>
+                <source src="assets/output2_10sec_fd.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Heavy swords clashing against each other</div>
+            <br>
+            <div class="prompt-title">Note:</div>
+            <div class="prompt-text">**With linear-fader** 0f 1.5sec at the extremes</div>
+        </div>
+        <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/output3_10sec_fd.wav"></canvas>
+            <audio controls loop>
+                <source src="assets/output3_10sec_fd.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">People clapping in an auditorium</div>
+            <br>
+            <div class="prompt-title">Note:</div>
+            <div class="prompt-text">**With linear-fader** 0f 1.5sec at the extremes</div>
+        </div>
+        <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/output4_10sec_fd.wav"></canvas>
+            <audio controls loop>
+                <source src="assets/output4_10sec_fd.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">People giving a standing ovation</div>
+            <br>
+            <div class="prompt-title">Note:</div>
+            <div class="prompt-text">**With linear-fader** 0f 1.5sec at the extremes</div>
+        </div>
+        <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/output5_10sec_fd.wav"></canvas>
+            <audio controls loop>
+                <source src="assets/output5_10sec_fd.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">A busy New York City street at midday</div>
+            <br>
+            <div class="prompt-title">Note:</div>
+            <div class="prompt-text">**With linear-fader** 0f 1.5sec at the extremes</div>
+        </div>
+        <div class="audio-item">
+            <canvas class="waveform" data-audio="assets/output6_10sec_fd.wav"></canvas>
+            <audio controls loop>
+                <source src="assets/output6_10sec_fd.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="prompt-title">Prompt:</div>
+            <div class="prompt-text">Dogs barking at a distance</div>
+            <br>
+            <div class="prompt-title">Note:</div>
+            <div class="prompt-text">**With linear-fader** 0f 1.5sec at the extremes</div>
+        </div>
+    </div>
+    <h2>[SfX Audio] audioldm2</h2>
     <h3>Results form diffuser implementation for SfX</h3>
     <div class="audio-grid">
         <div class="audio-item">
@@ -430,9 +508,9 @@
             <div class="prompt-text">Without Faders at the extremes</div>
         </div>
     </div>
-    <!-- with faders -->
-    <h2>audioldm2</h2>
-    <h3>**with fader** Results form diffuser implementation for SfX</h3>
+    <h2>[SfX Audio] audioldm2</h2>
+    <h3>Results form diffuser implementation for SfX</h3>
+    <h4>**with custom fader (post AI generation - simple linear audio transformation)</h4>
     <div class="audio-grid">
         <div class="audio-item">
             <canvas class="waveform" data-audio="assets/s_output1_10sec_fd.wav"></canvas>
